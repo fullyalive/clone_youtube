@@ -2,10 +2,7 @@
   "name": "clone_youtube",
   "version": "1.0.0",
   "description": "Cloning Youtube with Vanilla and NodeJS",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fullyalive/clone_youtube.git"
@@ -18,5 +15,8 @@
   "homepage": "https://github.com/fullyalive/clone_youtube#readme",
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "scripts":{
+    "start": "node index.js"
   }
 }
