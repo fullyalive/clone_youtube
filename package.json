@@ -2,7 +2,6 @@
   "name": "clone_youtube",
   "version": "1.0.0",
   "description": "Cloning Youtube with Vanilla and NodeJS",
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fullyalive/clone_youtube.git"
@@ -14,9 +13,15 @@
   },
   "homepage": "https://github.com/fullyalive/clone_youtube#readme",
   "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
     "express": "^4.16.4"
   },
-  "scripts":{
-    "start": "node index.js"
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
   }
 }
