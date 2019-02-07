@@ -3,12 +3,9 @@ import morgan from "morgan"; // middleware
 import helmet from "helmet"; // 보안을 위한 package
 import cookieParser from "cookie-parser"; // session을 다루기위해 cookie에 유저정보를 저장하기 위한 package
 import bodyParser from "body-parser"; // form을 받았을 때 그 데이터를 갖고 있는 request object에 접근하기 위한 package(body로 부터 정보를 얻는다)
+import { userRouter } from "./router";
 
 const app = express();
-const PORT = 4000;
-
-const handleListening = () =>
-  console.log(`Listening on : http://localhost:${PORT}`);
 
 const handleHome = (req, res) => res.send("hello from home");
 
@@ -25,7 +22,7 @@ app.use(helmet());
 app.use(morgan("dev"));
 
 app.get("/", handleHome);
-
 app.get("/profile", handleProfile);
+app.use("/user", userRouter) // 누가 /user경로로 접속하면 userRouter 전체를 사용하겠다는 의미
 
-app.listen(PORT, handleListening);
+export default app;
