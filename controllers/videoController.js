@@ -10,7 +10,7 @@ export const search = (req, res) => {
   const {
     query: { term: searchingBy } // term : searchingBy 이건 term에다 searchingBy라는 이름을 주는 것이다. 이제 searchingBy는 req.query.term과 같음
   } = req; // const searchingBy = req.query.term; 예전 방식의 코딩
-  res.render("search", { pageTitle: "검색결과", searchingBy });
+  res.render("search", { pageTitle: "검색결과", searchingBy, videos });
 };
 
 export const videoUpload = (req, res) =>
