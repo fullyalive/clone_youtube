@@ -1,10 +1,10 @@
 // Global URLs
 
 const HOME = "/";
+const SEARCH = "/search";
 const SIGNUP = "/signup";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
-const SEARCH = "/search";
 
 // Users
 
@@ -24,10 +24,10 @@ const VIDEO_DELETE = "/:id/delete";
 const routes = {
   // Global
   home: HOME,
+  search: SEARCH,
   signup: SIGNUP,
   login: LOGIN,
   logout: LOGOUT,
-  search: SEARCH,
   // Users
   users: USERS,
   userDetail: USER_DETAIL,
