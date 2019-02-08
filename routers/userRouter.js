@@ -11,6 +11,6 @@ const userRouter = express.Router();
 // method="get" 요청을 처리하는 컨트롤러
 userRouter.get(routes.editProfile, editProfile);
 userRouter.get(routes.changePassword, changePassword);
-userRouter.get(routes.userDetail, userDetail);
+userRouter.get(routes.userDetail(), userDetail);
 
 export default userRouter;
