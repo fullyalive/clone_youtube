@@ -13,6 +13,7 @@ const app = express(); // express를 실행한 결과를 app 상수로 만든 �
 
 // express의 모든 route와 connection을 다루는 것은 request, response, next를 가진다
 
+app.set('view engine', "pug") // view engine의 설정값을 pug로 바꾼다. - 이제 렌더함수를 사용하면 pug확장자의 파일을 불러온다
 app.use(cookieParser());
 app.use(bodyParser.json()); // json을 서버가 이해할 수 있도록
 app.use(bodyParser.urlencoded({ extended: true })); // urlencoded: 일반적인 html form을 전송하면 서버가 urlencoded를 이해해야한다.
