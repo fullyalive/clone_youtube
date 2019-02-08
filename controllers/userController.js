@@ -4,7 +4,6 @@ import routes from "../routes";
 export const getSignup = (req, res) => {
   res.render("signup", { pageTitle: "회원가입" });
 };
-
 export const postSignup = (req, res) => {
   const {
     body: { name, email, password, password2 }
@@ -19,7 +18,14 @@ export const postSignup = (req, res) => {
   }
 };
 
-export const login = (req, res) => res.render("login", { pageTitle: "로그인" });
+export const getLogin = (req, res) =>
+  res.render("login", { pageTitle: "로그인" });
+export const postLogin = (req, res) => {
+  // ToDo : 사용자 비밀번호가 db에 있는것과 같은 것인지 체크
+  // ToDo : 로그인에 에러가 있으면 다시 로그인 창 표시
+  res.redirect(routes.home);
+};
+
 export const logout = (req, res) =>
   res.render("logout", { pageTitle: "로그아웃" });
 export const editProfile = (req, res) =>

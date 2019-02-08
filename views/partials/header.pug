@@ -8,7 +8,15 @@ header.header
         //- 컨트롤러가 query에 접근하려면 method가 get이어야 한다
     .header__column
         ul
-            li
-                a(href=routes.signup) 회원가입
-            li
-                a(href=routes.login) 로그인
+            if !user.isAuthenticated
+                li
+                    a(href=routes.signup) 회원가입
+                li
+                    a(href=routes.login) 로그인
+            else
+                li
+                    a(href=routes.videoUpload) 동영상 올리기
+                li
+                    a(href=routes.userDetail(user.id)) 프로필
+                li
+                    a(href=routes.logout) 로그아웃
