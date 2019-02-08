@@ -3,15 +3,11 @@ import morgan from "morgan"; // middleware
 import helmet from "helmet"; // 보안을 위한 package
 import cookieParser from "cookie-parser"; // session을 다루기위해 cookie에 유저정보를 저장하기 위한 package
 import bodyParser from "body-parser"; // form을 받았을 때 그 데이터를 갖고 있는 request object에 접근하기 위한 package(body로 부터 정보를 얻는다)
-import { userRouter } from "./router";
+import globalRouter from "./routers/globalRouter";
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
 
 const app = express();
-
-const handleHome = (req, res) => res.send("hello from home");
-
-const handleProfile = (req, res) => {
-  res.send("user profile");
-};
 
 // express의 모든 route와 connection을 다루는 것은 request, response, next를 가진다
 
@@ -21,8 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // urlencoded: 일반적인 
 app.use(helmet());
 app.use(morgan("dev"));
 
-app.get("/", handleHome);
-app.get("/profile", handleProfile);
-app.use("/user", userRouter) // 누가 /user경로로 접속하면 userRouter 전체를 사용하겠다는 의미
+app.user("/", globalRouter);
+app.use("/user", userRouter); // 누가 /user경로로 접속하면 userRouter 전체를 사용하겠다는 의미
+app.use("/video", videoRouter);
 
 export default app;
