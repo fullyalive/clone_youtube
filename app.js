@@ -6,6 +6,7 @@ import bodyParser from "body-parser"; // form을 받았을 때 그 데이터를 
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
+import routes from "./routes";
 
 const app = express();
 
@@ -17,8 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // urlencoded: 일반적인 
 app.use(helmet());
 app.use(morgan("dev"));
 
-app.user("/", globalRouter);
-app.use("/user", userRouter); // 누가 /user경로로 접속하면 userRouter 전체를 사용하겠다는 의미
-app.use("/video", videoRouter);
+app.use(routes.home, globalRouter);
+app.use(routes.users, userRouter); // 누가 /user경로로 접속하면 userRouter 전체를 사용하겠다는 의미
+app.use(routes.videos, videoRouter);
 
 export default app;
