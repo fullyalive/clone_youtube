@@ -1,4 +1,11 @@
 extends layouts/main
 
 block content
-    p Signup
+    .form_container
+        form(action=routes.signup, method="post")
+            input(type="text", name="name", placeholder="닉네임을 적어주세요")
+            input(type="email", name="email", placeholder="이메일")
+            input(type="password", name="password", placeholder="비밀번호")
+            input(type="password2", name="password2", placeholder="비밀번호를 확인해주세요")
+            input(type="submit", value="회원가입")
+        include partials/socialLogin
