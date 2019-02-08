@@ -3,6 +3,10 @@ header.header
         a(href=routes.home)
             i.fab.fa-youtube
     .header__column
+        form(action=routes.search, method="get") 
+            input(type="text", placeholder="검색어를 입력하세요", name="term")
+        //- 컨트롤러가 query에 접근하려면 method가 get이어야 한다
+    .header__column
         ul
             li
                 a(href=routes.signup) 회원가입
