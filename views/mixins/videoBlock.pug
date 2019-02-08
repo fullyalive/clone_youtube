@@ -1,0 +1,10 @@
+//- 코드를 복붙하지 않고 재활용하는 방법을 mixin이라 한다.
+//- mixin에는 인자가 하나 필요하다.
+
+mixin videoBlock(video = {})
+    //- 이 경우 mixin에 인자가 입력되면, 그 객체의 이름을 video라고 하는 것
+    .videoBlock
+        video.videoBlock__thumbnail(src=video.videoFile, controls=true)
+        //- 비디오 태그(html은 <video />)
+        h4.videoBlock__title=video.title
+        h6.videoBlock__views=video.views

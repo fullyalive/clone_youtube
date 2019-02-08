@@ -1,7 +1,12 @@
 extends layouts/main
+include mixins/videoBlock
 
+//- db.js에서 videos를 불러와서 videoController로 home.pug에 뿌려준걸 받아와서 출력
 block content
     .videos
         each item in videos
-            h1= item.title
-            p= item.description 
+            +videoBlock({
+                title: item.title,
+                views: item.views,
+                videoFile: item.videoFile
+            })
