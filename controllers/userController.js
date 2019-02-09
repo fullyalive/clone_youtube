@@ -21,13 +21,16 @@ export const postSignup = (req, res) => {
 export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "로그인" });
 export const postLogin = (req, res) => {
-  // ToDo : 사용자 비밀번호가 db에 있는것과 같은 것인지 체크
-  // ToDo : 로그인에 에러가 있으면 다시 로그인 창 표시
+  // To Do : 사용자 비밀번호가 db에 있는것과 같은 것인지 체크
+  // To Do : 로그인에 에러가 있으면 다시 로그인 창 표시
   res.redirect(routes.home);
 };
 
-export const logout = (req, res) =>
-  res.render("logout", { pageTitle: "로그아웃" });
+export const logout = (req, res) => {
+  // To Do : 로그아웃 프로세스
+  res.redirect(routes.home);
+};
+
 export const editProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "프로필수정" });
 export const changePassword = (req, res) =>

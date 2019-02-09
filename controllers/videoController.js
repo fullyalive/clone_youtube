@@ -1,4 +1,5 @@
 import { videos } from "../db";
+import routes from "../routes";
 // render 함수의 첫번째 인자는 template, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
 
 export const home = (req, res) => {
@@ -13,8 +14,16 @@ export const search = (req, res) => {
   res.render("search", { pageTitle: "검색결과", searchingBy, videos });
 };
 
-export const videoUpload = (req, res) =>
+export const getVideoUpload = (req, res) =>
   res.render("videoUpload", { pageTitle: "동영상 업로드" });
+
+export const postVideoUpload = (req, res) => {
+  const {
+    body: { file, title, description }
+  } = req;
+  // To Do: 비디오 업로드 저장
+  res.redirect(routes.videoDetail(324393));
+};
 
 export const videoDetail = (req, res) =>
   res.render("videoDetail", { pageTitle: "동영상 정보" });

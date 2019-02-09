@@ -15,7 +15,7 @@ header.header
                     a(href=routes.login) 로그인
             else
                 li
-                    a(href=routes.videoUpload) 동영상 올리기
+                    a(href=`/videos${routes.videoUpload}`) 동영상 올리기
                 li
                     a(href=routes.userDetail(user.id)) 프로필
                 li
