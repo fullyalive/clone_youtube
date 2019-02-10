@@ -6,6 +6,6 @@ block content
             label(for="file") Video File
             input(type="file", id="file", name="videoFile", required=true, accept="video/*") 
             //- accept="image/*"로 하면 이미지만 업로드 가능, name="videoFile"은 middlewares의 uploadVideo.single('videoFile')로 사용된다
-            input(type="text", placeholder="Title", name="title", required=true)
-            textarea(name="description", placeholder="Description", required=true)
+            input(type="text", placeholder="제목", name="title", required=true)
+            textarea(name="description", placeholder="동영상을 설명해주세요", required=true)
             input(type="submit", value="Upload Video")

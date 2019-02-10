@@ -41,6 +41,7 @@ const routes = {
   changePassword: CHANGE_PASSWORD,
   // Videos
   videos: VIDEOS,
+  videoUpload: VIDEO_UPLOAD,
   videoDetail: id => {
     if (id) {
       return `/videos/${id}`;
@@ -48,8 +49,13 @@ const routes = {
       return VIDEO_DETAIL;
     }
   },
-  videoUpload: VIDEO_UPLOAD,
-  videoEdit: VIDEO_EDIT,
+  videoEdit: (id) => {
+    if(id) {
+      return `/videos/${id}/edit`
+    } else {
+      return VIDEO_EDIT
+    }
+  }, 
   videoDelete: VIDEO_DELETE
 };
 

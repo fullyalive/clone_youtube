@@ -53,8 +53,31 @@ export const videoDetail = async (req, res) => {
   }
 };
 
-export const videoEdit = (req, res) =>
-  res.render("videoEdit", { pageTitle: "동영상 수정" });
+export const getVideoEdit = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    res.render("videoEdit", { pageTitle: `{수정 | ${video.title}`, video });
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
+};
+
+export const postVideoEdit = async (req, res) => {
+  const {
+    params: { id },
+    body: { title, description }
+  } = req;
+  try {
+    await Video.findOneAndUpdate({ _id: id }, { title, description }); // 그냥 업데이트 하면 끝이기 떄문에 저장하지 않는다.
+    res.redirect(routes.videoDetail(id));
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+};
 
 export const videoDelete = (req, res) =>
   res.render("videoDelete", { pageTitle: "동영상 삭제" });
