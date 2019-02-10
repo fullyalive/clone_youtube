@@ -2,9 +2,10 @@
 
 Cloning Youtube with Vanilla and Node JS
 
+***
+
 ## Structure
 
-***
 
 ### Global
 - 홈 (Home)

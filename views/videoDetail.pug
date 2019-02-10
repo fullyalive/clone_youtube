@@ -1,4 +1,9 @@
 extends layouts/main
 
 block content
-    p Video Detail
+    .video__player
+        video(src=`/${video.fileUrl}`)
+    .video__info
+        h5.video__title=video.title
+        span.video__views=video.views
+        p.video__description=video.description

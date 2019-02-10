@@ -35,13 +35,23 @@ export const postVideoUpload = async (req, res) => {
     title,
     description
   });
-  console.log(newVideo);
   // To Do: 비디오 업로드 저장
   res.redirect(routes.videoDetail(newVideo.id));
 };
 
-export const videoDetail = (req, res) =>
-  res.render("videoDetail", { pageTitle: "동영상 정보" });
+export const videoDetail = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const video = await Video.findById(id); // Model.findById - mongoose의 query
+    console.log(video);
+    res.render("videoDetail", { pageTitle: video.title, video }); // video.title : 페이지 타이틀을 동영상 제목으로, video: video 변수를 템플릿에 전달
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
+};
 
 export const videoEdit = (req, res) =>
   res.render("videoEdit", { pageTitle: "동영상 수정" });
