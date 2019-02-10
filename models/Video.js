@@ -19,7 +19,13 @@ const VideoSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId, // [1, 2, 4, 7] 이런 식으로 Video와 연결된 Comment의 Id가 저장됨
+      ref: "Comment"
+    }
+  ]
 });
 
 const model = mongoose.model("Video", VideoSchema); // 모델의 이름은 Video, video model의 schema는 VideoSchema
