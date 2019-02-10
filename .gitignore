@@ -1,4 +1,5 @@
 node_modules/
+uploads
 
 # Output of 'npm pack'
 *.tgz

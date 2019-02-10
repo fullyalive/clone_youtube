@@ -24,12 +24,20 @@ export const search = (req, res) => {
 export const getVideoUpload = (req, res) =>
   res.render("videoUpload", { pageTitle: "동영상 업로드" });
 
-export const postVideoUpload = (req, res) => {
+export const postVideoUpload = async (req, res) => {
+  // postVideoUpload function이 유저가 업로드한 file에 접근, middlewares의 multer에 의해서 파일이 아닌 url 방식으로 접근한다.
   const {
-    body: { file, title, description }
+    body: { title, description },
+    file: { path } // file을 form에서 받아오는 것이 아니라 multer가 생성해준 path에서 받아온다
   } = req;
+  const newVideo = await Video.create({
+    fileUrl: path,
+    title,
+    description
+  });
+  console.log(newVideo);
   // To Do: 비디오 업로드 저장
-  res.redirect(routes.videoDetail(324393));
+  res.redirect(routes.videoDetail(newVideo.id));
 };
 
 export const videoDetail = (req, res) =>

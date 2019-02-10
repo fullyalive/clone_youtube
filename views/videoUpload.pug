@@ -2,9 +2,10 @@ extends layouts/main
 
 block content
     .form-container
-        form(action=`/videos${routes.videoUpload}`, method="post")
+        form(action=`/videos${routes.videoUpload}`, method="post", enctype="multipart/form-data")
             label(for="file") Video File
-            input(type="file", id="file", name="file", required=true)
+            input(type="file", id="file", name="videoFile", required=true, accept="video/*") 
+            //- accept="image/*"로 하면 이미지만 업로드 가능, name="videoFile"은 middlewares의 uploadVideo.single('videoFile')로 사용된다
             input(type="text", placeholder="Title", name="title", required=true)
             textarea(name="description", placeholder="Description", required=true)
             input(type="submit", value="Upload Video")
