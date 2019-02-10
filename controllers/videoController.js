@@ -1,9 +1,16 @@
-import { videos } from "../db";
 import routes from "../routes";
-// render 함수의 첫번째 인자는 template, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
+import Video from "../models/Video";
 
-export const home = (req, res) => {
-  res.render("home", { pageTitle: "홈", videos });
+// render 함수의 첫번째 인자는 template, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
+export const home = async (req, res) => {
+  // async : function의 특정 부분을 기다려야 할 때 사용
+  try {
+    const videos = await Video.find({}); // await : 다음 과정이 끝날 때까지 기다리라는 뜻
+    res.render("home", { pageTitle: "홈", videos });
+  } catch (error) {
+    console.log(error);
+    res.render("home", { pageTitle: "홈", videos: [] }); // error가 생기면 video는 없을 것이고 default 값으로 video는 빈 array
+  }
 }; // 이 함수는 자동으로 views 폴더에서 이름이 home이고 확장자가 pug인 템플릿 파일을 찾아서 보여준다.
 
 export const search = (req, res) => {
