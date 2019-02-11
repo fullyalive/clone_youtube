@@ -31,7 +31,7 @@ const routes = {
   // Users
   users: USERS,
   userDetail: id => {
-    if(id){
+    if (id) {
       return `/users/${id}`;
     } else {
       return USER_DETAIL;
@@ -49,14 +49,20 @@ const routes = {
       return VIDEO_DETAIL;
     }
   },
-  videoEdit: (id) => {
-    if(id) {
-      return `/videos/${id}/edit`
+  videoEdit: id => {
+    if (id) {
+      return `/videos/${id}/edit`;
     } else {
-      return VIDEO_EDIT
+      return VIDEO_EDIT;
     }
-  }, 
-  videoDelete: VIDEO_DELETE
+  },
+  videoDelete: id => {
+    if (id) {
+      return `/videos/${id}/delete`;
+    } else {
+      return VIDEO_DELETE;
+    }
+  }
 };
 
 export default routes;
