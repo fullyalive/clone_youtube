@@ -3,9 +3,9 @@ import Video from "../models/Video";
 
 // render 함수의 첫번째 인자는 template, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
 export const home = async (req, res) => {
-  // async : function의 특정 부분을 기다려야 할 때 사용
+  // async : function의 특정 부분을ㅎ 기다려야 할 때 사용
   try {
-    const videos = await Video.find({}); // await : 다음 과정이 끝날 때까지 기다리라는 뜻
+    const videos = await Video.find({}).sort({ _id: -1 }); // await : 다음 과정이 끝날 때까지 기다리라는 뜻, -1 : 위 아래 순서를 바꾸는 것
     res.render("home", { pageTitle: "홈", videos });
   } catch (error) {
     console.log(error);
@@ -13,13 +13,25 @@ export const home = async (req, res) => {
   }
 }; // 이 함수는 자동으로 views 폴더에서 이름이 home이고 확장자가 pug인 템플릿 파일을 찾아서 보여준다.
 
-export const search = (req, res) => {
+// 비디오 검색
+
+export const search = async (req, res) => {
   // 유저가 입력한 term을 가지고 오는 것 = req.query.term
   const {
     query: { term: searchingBy } // term : searchingBy 이건 term에다 searchingBy라는 이름을 주는 것이다. 이제 searchingBy는 req.query.term과 같음
   } = req; // const searchingBy = req.query.term; 예전 방식의 코딩
+  let videos = [];
+  try {
+    videos = await Video.find({
+      title: { $regex: searchingBy, $options: "i" } // options: "i" -> 대소문자 구분을 하지 않는다.
+    });
+  } catch (error) {
+    console.log(error);
+  }
   res.render("search", { pageTitle: "검색결과", searchingBy, videos });
 };
+
+// 비디오 업로드
 
 export const getVideoUpload = (req, res) =>
   res.render("videoUpload", { pageTitle: "동영상 업로드" });
@@ -35,9 +47,10 @@ export const postVideoUpload = async (req, res) => {
     title,
     description
   });
-  // To Do: 비디오 업로드 저장
   res.redirect(routes.videoDetail(newVideo.id));
 };
+
+// 비디오 정보
 
 export const videoDetail = async (req, res) => {
   const {
@@ -52,6 +65,8 @@ export const videoDetail = async (req, res) => {
     res.redirect(routes.home);
   }
 };
+
+// 비디오 수정
 
 export const getVideoEdit = async (req, res) => {
   const {
@@ -78,6 +93,8 @@ export const postVideoEdit = async (req, res) => {
     res.redirect(routes.home);
   }
 };
+
+// 비디오 삭제
 
 export const videoDelete = async (req, res) => {
   const {
