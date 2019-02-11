@@ -1,7 +1,3 @@
-node_modules/
-uploads
-static
-
 # Output of 'npm pack'
 *.tgz
 
@@ -29,3 +25,6 @@ static
 # FuseBox cache
 .fusebox/
 package-lock.json
+uploads
+static
+node_modules

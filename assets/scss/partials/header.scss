@@ -1,0 +1,64 @@
+.header {
+  margin-bottom: 50px;
+  .header__wrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px 5px;
+    box-shadow: 0px 5px 15px -1px rgba(160, 160, 160, 0.2);
+    .header__column {
+      display: flex;
+      align-items: center;
+      i {
+        color: $red;
+        font-size: 32px;
+        margin-right: 5px;
+      }
+      .brand {
+        font-size: 16px;
+        font-weight: 900;
+        font-family: "Gothic A1", sans-serif;
+      }
+      &:first-child {
+        width: 140px;
+      }
+      &:nth-child(2) {
+        width: 600px;
+        justify-self: center;
+      }
+      &:last-child {
+        justify-self: end;
+      }
+      ul {
+        display: flex;
+        align-items: center;
+        color: $dark-grey;
+        text-transform: uppercase;
+        li:not(:last-child) {
+          margin-right: 15px;
+          i {
+            color: $dark-grey;
+            font-size: 20px;
+          }
+        }
+      }
+      form {
+        width: 100%;
+        max-width: 562px;
+        input {
+          padding: 7px 10px;
+          width: 100%;
+          border: 1px solid $grey;
+          border-radius: 5px;
+          font-size: 14px;
+          color: $black;
+          font-weight: 600;
+          &::placeholder {
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.7);
+          }
+        }
+      }
+    }
+  }
+}

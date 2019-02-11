@@ -1,5 +1,7 @@
-@import "/config/_variables.scss";
+@import "config/_variables.scss";
+@import "config/reset.scss";
+@import "main.scss";
 
-body {
-    background-color: $bgColor;
-}
+@import "partials/header.scss";
+
+@import url('https://fonts.googleapis.com/css?family=Gothic+A1:900');
