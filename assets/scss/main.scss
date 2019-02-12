@@ -5,13 +5,31 @@ body {
 body {
   color: $black;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", 'Gothic A1', sans-serif;
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", "Gothic A1", sans-serif;
   font-size: 14px;
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   max-width: 1400px;
+  padding: 50px 0;
   margin: 0 auto;
   min-height: 70vh;
+}
+
+button,
+input {
+  padding: 7px 10px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 14px;
+  color: $black;
+  font-weight: 600;
+  &::placeholder {
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.7);
+  }
 }

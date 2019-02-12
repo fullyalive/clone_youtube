@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 50px 0;
+  border-top: 3px solid rgba(0, 0, 0, 0.1);
+  margin: 50px 0;
+  .footer__icon {
+    margin-right: 5px;
+    margin-bottom: 6px;
+    color: $red;
+    font-size: 32px;
+  }
+  .footer__text {
+    font-weight: 900;
+    font-family: "Gothic A1", sans-serif;
+  }
+}
