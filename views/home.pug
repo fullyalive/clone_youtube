@@ -3,7 +3,7 @@ include mixins/videoBlock
 
 //- videos를 불러와서 videoController로 home.pug에 뿌려준걸 받아와서 출력
 block content
-    .videos
+    .home-videos
         each item in videos
             +videoBlock({
                 id: item.id,
