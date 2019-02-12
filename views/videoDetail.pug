@@ -1,16 +1,19 @@
 extends layouts/main
 
 block content
-    .video__player
-        video(src=`/${video.fileUrl}`)
-    .video__info
-        a(href=routes.videoEdit(video.id)) 동영상 수정
-        //- videoController에서 넘겨준 video의 id를 받아온다.
-        h5.video__title=video.title
-        span.video__views=video.views
-        p.video__description=video.description
-    .video__comments
-        if video.comments.length === 1
-            span.video__comment-number 1 comment
-        else
-            span.video__comment-number #{video.comments.length} comments
+    .video-detail__container
+        .video__player
+            video(src=`/${video.fileUrl}`)
+        .video__info
+            //- videoController에서 넘겨준 video의 id를 받아온다.
+            h5.video__title=video.title
+            span.video__views 조회수 #{video.views}회
+        .video__subInfo
+            p.video__description=video.description
+        .video__comments
+            //- if video.comments.length === 1
+            //-     span.video__comment-number 1 comment
+            //- else
+            span.video__comment-number 댓글 #{video.comments.length}개
+        .video__function
+            a(href=routes.videoEdit(video.id)) 동영상 수정
