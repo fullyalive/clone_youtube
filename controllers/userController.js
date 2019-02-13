@@ -1,10 +1,11 @@
+import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
 
 export const getSignup = (req, res) => {
   res.render("signup", { pageTitle: "회원가입" }); // render 함수의 첫번째 인자는 template, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
 };
-export const postSignup = async (req, res) => {
+export const postSignup = async (req, res, next) => {
   const {
     body: { name, email, password, password2 }
   } = req;
@@ -18,21 +19,21 @@ export const postSignup = async (req, res) => {
         email
       });
       await User.register(user, password);
+      next();
     } catch (error) {
       console.log(error);
+      res.redirect(routes.home);
     }
-    // To Do : 유저 로그인
-    res.redirect(routes.home);
   }
 };
 
 export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "로그인" });
-export const postLogin = (req, res) => {
-  // To Do : 사용자 비밀번호가 db에 있는것과 같은 것인지 체크
-  // To Do : 로그인에 에러가 있으면 다시 로그인 창 표시
-  res.redirect(routes.home);
-};
+export const postLogin = passport.authenticate("local", {
+  // local은 우리가 설치해준 Strategy의 이름 : username(여기서는 email)과 password를 이용
+  failureRedirect: routes.login, // 로그인에 실패할경우 로그인 창으로 리다이렉트
+  successRedirect: routes.home // 로그인에 성공할 경우 홈으로 리다이렉트
+});
 
 export const logout = (req, res) => {
   // To Do : 로그아웃 프로세스
