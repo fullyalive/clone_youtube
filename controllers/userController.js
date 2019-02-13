@@ -1,10 +1,10 @@
 import routes from "../routes";
-// render 함수의 첫번째 인자는 template, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
+import User from "../models/User";
 
 export const getSignup = (req, res) => {
-  res.render("signup", { pageTitle: "회원가입" });
+  res.render("signup", { pageTitle: "회원가입" }); // render 함수의 첫번째 인자는 template, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
 };
-export const postSignup = (req, res) => {
+export const postSignup = async (req, res) => {
   const {
     body: { name, email, password, password2 }
   } = req;
@@ -12,7 +12,15 @@ export const postSignup = (req, res) => {
     res.status(400);
     res.render("signup", { pageTitle: "회원가입" });
   } else {
-    // To Do : 사용자 등록
+    try {
+      const user = await User({
+        name,
+        email
+      });
+      await User.register(user, password);
+    } catch (error) {
+      console.log(error);
+    }
     // To Do : 유저 로그인
     res.redirect(routes.home);
   }
