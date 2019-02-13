@@ -8,15 +8,15 @@ import {
   postLogin,
   logout
 } from "../controllers/userController";
+import { onlyPublic } from "../middlewares"; // 사용자가 로그인 되어 있으면 signup과 login 화면을 못보도록 라우트 제한을 걸기위해서
 
 const globalRouter = express.Router();
 
-// method="get" 요청을 처리하는 컨트롤러
-globalRouter.get(routes.signup, getSignup);
-globalRouter.post(routes.signup, postSignup, postLogin); // method가 post인 /signup 경로에서 작동, Signup이 완료되면 username과 password 정보를 받아 바로 로그인 되도록 postLogin을 붙여준다.
+globalRouter.get(routes.signup, onlyPublic, getSignup); // method가 get인 /signup 경로에서 작동
+globalRouter.post(routes.signup, onlyPublic, postSignup, postLogin); // method가 post인 /signup 경로에서 작동, Signup이 완료되면 username과 password 정보를 받아 바로 로그인 되도록 postLogin을 붙여준다.
 
-globalRouter.get(routes.login, getLogin);
-globalRouter.post(routes.login, postLogin); // method가 post인 /login 경로에서 작동
+globalRouter.get(routes.login, onlyPublic, getLogin); // method가 get인 /singup 경로에서 작동
+globalRouter.post(routes.login, onlyPublic, postLogin); // method가 post인 /login 경로에서 작동
 
 globalRouter.get(routes.home, home);
 globalRouter.get(routes.search, search);

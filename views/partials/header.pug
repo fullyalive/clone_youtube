@@ -10,7 +10,7 @@ header.header
             //- 컨트롤러가 query에 접근하려면 method가 get이어야 한다
         .header__column
             ul
-                if !user.isAuthenticated
+                if !user
                     li
                         a(href=routes.signup) 회원가입
                     li
