@@ -29,14 +29,49 @@ export const postSignup = async (req, res, next) => {
 
 export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "로그인" });
+
 export const postLogin = passport.authenticate("local", {
   // local은 우리가 설치해준 Strategy의 이름 : username(여기서는 email)과 password를 이용
   failureRedirect: routes.login, // 로그인에 실패할경우 로그인 창으로 리다이렉트
   successRedirect: routes.home // 로그인에 성공할 경우 홈으로 리다이렉트
 });
 
+// 유저를 깃헙 인증으로 보내는 과정
+export const githubLogin = passport.authenticate("github");
+
+// 유저가 깃헙에서 돌아오는 과정
+export const githubLoginCallback = async (_, __, profile, cb) => {
+  // 함수의 인자를 쓰지 않을때 _, __ 이런식으로 표시F
+  // cb는 passport에서 제공되는 것
+  const {
+    _json: { id, avatar_url, name, email }
+  } = profile;
+  try {
+    const user = await User.findOne({ email }); // github에서 받은 email과 같은 email을 가진 user를 찾는다. 여기서 email은 email: email과 같음
+    if (user) {
+      // 만약 동일한 email을 가진 사용자를 발견하면 그 사용자의 정보를 업데이트
+      user.githubId = id; // github에서 가져온 id를 User model Schema의 githubId로 할당
+      user.save();
+      return cb(null, user); // 첫번째 매개변수인 에러는 없음(null), 두번째는 user
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      githubId: id,
+      avatarUrl: avatar_url
+    });
+    return cb(null, newUser);
+  } catch (error) {
+    return cb(error);
+  }
+};
+
+export const postGithubLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
 export const logout = (req, res) => {
-  // To Do : 로그아웃 프로세스
+  req.logout(); // passport에서 제공
   res.redirect(routes.home);
 };
 

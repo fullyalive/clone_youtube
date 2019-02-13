@@ -6,6 +6,11 @@ const SIGNUP = "/signup";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
 
+// Social Login
+
+const GITHUB = "/auth/github";
+const GITHUB_CALLBACK = "/auth/github/callback";
+
 // Users
 
 const USERS = "/users";
@@ -28,14 +33,16 @@ const routes = {
   signup: SIGNUP,
   login: LOGIN,
   logout: LOGOUT,
+  // Social Login
+  github: GITHUB,
+  githubCallback: GITHUB_CALLBACK,
   // Users
   users: USERS,
   userDetail: id => {
     if (id) {
       return `/users/${id}`;
-    } else {
-      return USER_DETAIL;
     }
+    return USER_DETAIL;
   },
   editProfile: EDIT_PROFILE,
   changePassword: CHANGE_PASSWORD,
@@ -45,23 +52,20 @@ const routes = {
   videoDetail: id => {
     if (id) {
       return `/videos/${id}`;
-    } else {
-      return VIDEO_DETAIL;
     }
+    return VIDEO_DETAIL;
   },
   videoEdit: id => {
     if (id) {
       return `/videos/${id}/edit`;
-    } else {
-      return VIDEO_EDIT;
     }
+    return VIDEO_EDIT;
   },
   videoDelete: id => {
     if (id) {
       return `/videos/${id}/delete`;
-    } else {
-      return VIDEO_DELETE;
     }
+    return VIDEO_DELETE;
   }
 };
 
