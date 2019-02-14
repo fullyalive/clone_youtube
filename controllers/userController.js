@@ -44,7 +44,6 @@ export const githubLogin = passport.authenticate("github");
 export const githubLoginCallback = async (_, __, profile, cb) => {
   // 함수의 인자를 쓰지 않을때 _, __ 이런식으로 표시
   // cb는 passport에서 제공되는 것
-  console.log(_, __, profile, cb);
   const {
     _json: { id, avatar_url: avatarUrl, name, email }
   } = profile;
@@ -82,9 +81,20 @@ export const getMe = (req, res) => {
   res.render("userDetail", { pageTitle: "유저 정보", user: req.user }); // 유저는 로그인한 유저
 };
 
+export const userDetail = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const user = await User.findById(id);
+    res.render("userDetail", { pageTitle: "유저 정보", user });
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+};
+
 export const editProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "프로필수정" });
+
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "비밀번호 변경" });
-export const userDetail = (req, res) =>
-  res.render("userDetail", { pageTitle: "유저정보" });
