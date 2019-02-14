@@ -1,8 +1,12 @@
 import dotenv from "dotenv";
 import passport from "passport";
 import GithubStrategy from "passport-github";
+import FacebookStrategy from "passport-facebook";
 import User from "./models/User";
-import { githubLoginCallback } from "./controllers/userController";
+import {
+  githubLoginCallback,
+  facebookLoginCallback
+} from "./controllers/userController";
 import routes from "./routes";
 
 dotenv.config();
@@ -17,6 +21,21 @@ passport.use(
       callbackURL: `http://localhost:4000${routes.githubCallback}`
     },
     githubLoginCallback
+  )
+);
+
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+      callbackURL: `https://shy-tiger-18.localtunnel.me${
+        routes.facebookCallback
+      }`,
+      profileFields: ["id", "displayName", "photos", "email"],
+      scope: ["public_profile", "email"]
+    },
+    facebookLoginCallback
   )
 );
 
