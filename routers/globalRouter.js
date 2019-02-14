@@ -9,7 +9,8 @@ import {
   postLogin,
   logout,
   githubLogin,
-  postGithubLogin
+  postGithubLogin,
+  getMe
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middlewares"; // 사용자가 로그인 되어 있으면 signup과 login 화면을 못보도록 라우트 제한을 걸기위해서
 
@@ -31,5 +32,6 @@ globalRouter.post(routes.login, onlyPublic, postLogin); // method가 post인 /lo
 globalRouter.get(routes.home, home);
 globalRouter.get(routes.search, search);
 globalRouter.get(routes.logout, onlyPrivate, logout);
+globalRouter.get(routes.me, getMe);
 
 export default globalRouter;

@@ -15,6 +15,7 @@ const GITHUB_CALLBACK = "/auth/github/callback";
 
 const USERS = "/users";
 const EDIT_PROFILE = "/edit-profile";
+const ME = "/me";
 const CHANGE_PASSWORD = "/change-password";
 const USER_DETAIL = "/:id";
 
@@ -38,6 +39,7 @@ const routes = {
   githubCallback: GITHUB_CALLBACK,
   // Users
   users: USERS,
+  me: ME,
   userDetail: id => {
     if (id) {
       return `/users/${id}`;

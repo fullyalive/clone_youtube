@@ -10,7 +10,7 @@ header.header
             //- 컨트롤러가 query에 접근하려면 method가 get이어야 한다
         .header__column
             ul
-                if !user
+                if !loggedUser
                     li
                         a(href=routes.signup) 회원가입
                     li
@@ -20,7 +20,7 @@ header.header
                         a(href=`/videos${routes.videoUpload}`)
                             i.fas.fa-video
                     li
-                        a(href=routes.userDetail(user.id))
+                        a(href=routes.me)
                             i.fas.fa-user-circle
                     li
                         a(href=routes.logout) 로그아웃
