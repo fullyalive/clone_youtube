@@ -10,6 +10,12 @@ block content
                 .u-noPhoto
                     i.fas.fa-user-astronaut
             h4.profile__username=user.name
+        if user.id === loggedUser.id
+            .user-profile__btns
+                a(href=`/users${routes.editProfile}`)
+                    button.edit-btn 프로필 수정
+                a(href=`/users${routes.changePassword}`)
+                    button.edit-btn 비밀번호 수정
         .upload-videos
             each item in user.videos
                 +videoBlock({

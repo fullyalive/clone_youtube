@@ -23,7 +23,6 @@ export const postSignup = async (req, res, next) => {
       await User.register(user, password);
       next();
     } catch (error) {
-      console.log(error);
       res.redirect(routes.home);
     }
   }
@@ -58,7 +57,6 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
       user.githubId = id; // github에서 가져온 id를 User model Schema의 githubId로 할당
       user.avatarUrl = avatarUrl; // 만약 깃허브 이메일과 동일한 로컬스트레티지로 가입한 유저가 있으면 깃허브 프로필 사진을 받아온다
       user.save();
-      console.log(user);
       return cb(null, user); // 첫번째 매개변수인 에러는 없음(null), 두번째는 user
     }
     const newUser = await User.create({
@@ -117,10 +115,11 @@ export const logout = (req, res) => {
   res.redirect(routes.home);
 };
 
-/* --- 내 정보 --- */
+/* --- 내 정보 보기 --- */
 
-export const getMe = (req, res) => {
-  res.render("userDetail", { pageTitle: "내 정보", user: req.user }); // 유저는 로그인한 유저
+export const getMe = async (req, res) => {
+  const user = await User.findById(req.user.id).populate("videos");
+  res.render("myProfile", { pageTitle: "내 정보", user }); // 유저는 로그인한 유저
 };
 
 /* --- 내 정보 수정 --- */
@@ -175,7 +174,7 @@ export const userDetail = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("videos");
     res.render("userDetail", { pageTitle: "유저 정보", user });
   } catch (error) {
     res.redirect(routes.home);

@@ -5,10 +5,11 @@ import Video from "../models/Video";
 export const home = async (req, res) => {
   // async : function의 특정 부분을 기다려야 할 때 사용
   try {
-    const videos = await Video.find({}).sort({ _id: -1 }); // await : 다음 과정이 끝날 때까지 기다리라는 뜻, -1 : 위 아래 순서를 바꾸는 것
+    const videos = await Video.find({})
+      .populate("creator")
+      .sort({ _id: -1 }); // await : 다음 과정이 끝날 때까지 기다리라는 뜻, -1 : 위 아래 순서를 바꾸는 것
     res.render("home", { pageTitle: "홈", videos });
   } catch (error) {
-    console.log(error);
     res.render("home", { pageTitle: "홈", videos: [] }); // error가 생기면 video는 없을 것이고 default 값으로 video는 빈 array
   }
 }; // 이 함수는 자동으로 views 폴더에서 이름이 home이고 확장자가 pug인 템플릿 파일을 찾아서 보여준다.
@@ -24,9 +25,9 @@ export const search = async (req, res) => {
   try {
     videos = await Video.find({
       title: { $regex: searchingBy, $options: "i" } // options: "i" -> 대소문자 구분을 하지 않는다.
-    });
+    }).populate("creator");
   } catch (error) {
-    console.log(error);
+    res.redirect(routes.home);
   }
   res.render("search", { pageTitle: "검색결과", searchingBy, videos });
 };
@@ -63,7 +64,6 @@ export const videoDetail = async (req, res) => {
     const video = await Video.findById(id).populate("creator"); // Model.findById - mongoose의 query, populate : 객체를 가지고 오는 함수
     res.render("videoDetail", { pageTitle: video.title, video }); // video.title : 페이지 타이틀을 동영상 제목으로, video: video 변수를 템플릿에 전달
   } catch (error) {
-    console.log(error);
     res.redirect(routes.home);
   }
 };
@@ -75,10 +75,14 @@ export const getVideoEdit = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const video = await Video.findById(id);
-    res.render("videoEdit", { pageTitle: `{수정 | ${video.title}`, video });
+    const video = await Video.findById(id).populate("creator");
+    // Route 보호
+    if (video.creator.id !== req.user.id) {
+      throw Error("권한이 없습니다");
+    } else {
+      res.render("videoEdit", { pageTitle: `{수정 | ${video.title}`, video });
+    }
   } catch (error) {
-    console.log(error);
     res.redirect(routes.home);
   }
 };
@@ -103,7 +107,12 @@ export const videoDelete = async (req, res) => {
     params: { id }
   } = req;
   try {
-    await Video.findOneAndRemove({ _id: id });
+    const video = await Video.findById(id).populate("creator");
+    if (video.creator.id !== req.user.id) {
+      throw Error();
+    } else {
+      await Video.findOneAndRemove({ _id: id });
+    }
   } catch (error) {
     console.log(error);
   }
