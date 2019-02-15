@@ -2,11 +2,11 @@ extends layouts/main
 
 block content
     .form-container
-        form(action=`/users${routes.editProfile}`, method="post")
+        form(action=`/users${routes.editProfile}`, method="post", enctype="multipart/form-data")
             label(for="avatar") Avatar
-            input(type="file", id="avatar", name="avatar")
-            input(type="text", placeholder="닉네임", name="name")
-            input(type="email", placeholder="이메일", name="email")
+            input(type="file", id="avatar", name="avatar", accept="image/*")
+            input(type="text", placeholder="닉네임", name="name", value=loggedUser.name)
+            input(type="email", placeholder="이메일", name="email", value=loggedUser.email)
             input(type="submit", value="변경하기")
         a.form-container__link(href=`/users${routes.changePassword}`) 비밀번호 변경하기
         

@@ -2,6 +2,12 @@ extends layouts/main
 
 block content
     .user-profile
-        .user_profile__header
-            img.avatar(src=user.avatarUrl)
+        .user-profile__header
+            img.u-avatar(src=user.avatarUrl)
             h4.profile__username=user.name
+        if user.id === loggedUser.id
+            .user-profile__btns
+                a(href=`/users${routes.editProfile}`)
+                    button.edit-btn 프로필 수정
+                a(href=`/users${routes.changePassword}`)
+                    button.edit-btn 비밀번호 수정

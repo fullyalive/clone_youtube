@@ -2,8 +2,10 @@ import multer from "multer";
 import routes from "./routes";
 
 const multerVideo = multer({ dest: "uploads/videos/" }); // 유저가 동영상을 업로드하면 서버에 있는 folder(video/)에 업로드
+const multerAvatar = multer({ dest: "uploads/avatars/" });
 
 export const uploadVideo = multerVideo.single("videoFile"); // single : 오직 하나의 파일만 upload, Name part는 videoUpload.pug의 file의 name="videoFile"에서 온 것
+export const uploadAvatar = multerAvatar.single("avatar"); // Name part는 editProfile.pug의 file의 name="avatar"에서 온 것
 
 export const localsMiddleware = (req, res, next) => {
   // locals를 추가한다. locals가 추가되면 템플릿, 컨트롤러 등 어디에서든 사용 가능

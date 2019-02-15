@@ -125,8 +125,25 @@ export const getMe = (req, res) => {
 
 /* --- 내 정보 수정 --- */
 
-export const editProfile = (req, res) =>
+export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "프로필수정" });
+
+export const postEditProfile = async (req, res) => {
+  const {
+    body: { name, email },
+    file
+  } = req; // multer에 의해 생성되는 것
+  try {
+    await User.findByIdAndUpdate(req.user.id, {
+      name,
+      email,
+      avatarUrl: file ? file.path : req.user.avatarUrl // 새로운 avatarfile이 없으면 업데이트 하지 않도록
+    });
+    res.redirect(routes.me);
+  } catch (error) {
+    res.render("editProfile", { pageTitle: "프로필수정" });
+  }
+};
 
 /* --- 비밀번호 변경 --- */
 

@@ -1,0 +1,30 @@
+.user-profile {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .user-profile__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 18px;
+    .profile__username {
+      font-size: 18px;
+      margin-top: 15px;
+    }
+  }
+  .user-profile__btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    a:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    .edit-btn {
+      width: 120px;
+      background-color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      color: $black;
+    }
+  }
+}
