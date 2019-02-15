@@ -1,6 +1,15 @@
-.u-avatar {
+.u-avatar,
+.u-noPhoto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
   height: 80px;
   background-color: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 50%;
+}
+
+.u-noPhoto {
+  font-size: 40px;
 }

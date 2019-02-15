@@ -11,26 +11,38 @@
   flex-direction: column;
   align-items: center;
   .video__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    padding-bottom: 25px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
-    button {
-      width: 100px;
-      margin-bottom: 25px;
+    margin-bottom: 25px;
+    .title-container {
+      .video__title {
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+      .video__views {
+        font-weight: 500;
+        font-size: 15px;
+        color: $dark-grey;
+      }
     }
-    .video__title,
-    .video__views {
-      display: block;
-      margin-bottom: 15px;
-      font-weight: 500;
+    .video__function {
+      a {
+        padding: 8px 12px;
+        border: 1px solid $red;
+        border-radius: 3px;
+        color: $red;
+        transition: all 0.5s ease-in-out;
+        &:hover {
+          background-color: $red;
+          color: #ffffff;
+        }
+      }
     }
-    .video__title {
-      font-size: 22px;
-      font-weight: 300;
-    }
-    .video__views {
-      font-size: 16px;
-    }
+
     .video__description {
       font-size: 14px;
     }
@@ -39,18 +51,37 @@
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
-    .video__description {
+    a {
+      display: flex;
+      align-items: center;
       margin-bottom: 15px;
+      .video__creator-avatar,
+      .noPhoto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 64px;
+        height: 64px;
+        margin-right: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        border-radius: 50%;
+      }
+      i {
+        font-size: 32px;
+      }
+    }
+    .video__creator-name {
+      font-weight: 600;
     }
   }
-  .video__comments {
-    width: 100%;
-    margin-top: 25px;
-    .video__comment-number {
-      font-size: 18px;
-    }
+  .video__description {
+    margin-bottom: 15px;
   }
-  .video__function {
-    width: 100%;
+}
+.video__comments {
+  width: 100%;
+  margin-top: 25px;
+  .video__comment-number {
+    font-size: 18px;
   }
 }

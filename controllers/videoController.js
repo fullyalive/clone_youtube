@@ -3,7 +3,7 @@ import Video from "../models/Video";
 
 // render 함수의 첫번째 인자는 template, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
 export const home = async (req, res) => {
-  // async : function의 특정 부분을ㅎ 기다려야 할 때 사용
+  // async : function의 특정 부분을 기다려야 할 때 사용
   try {
     const videos = await Video.find({}).sort({ _id: -1 }); // await : 다음 과정이 끝날 때까지 기다리라는 뜻, -1 : 위 아래 순서를 바꾸는 것
     res.render("home", { pageTitle: "홈", videos });
@@ -13,7 +13,7 @@ export const home = async (req, res) => {
   }
 }; // 이 함수는 자동으로 views 폴더에서 이름이 home이고 확장자가 pug인 템플릿 파일을 찾아서 보여준다.
 
-// 비디오 검색
+/* --- 비디오 검색 --- */
 
 export const search = async (req, res) => {
   // 유저가 입력한 term을 가지고 오는 것 = req.query.term
@@ -31,7 +31,7 @@ export const search = async (req, res) => {
   res.render("search", { pageTitle: "검색결과", searchingBy, videos });
 };
 
-// 비디오 업로드
+/* --- 비디오 업로드 --- */
 
 export const getVideoUpload = (req, res) =>
   res.render("videoUpload", { pageTitle: "동영상 업로드" });
@@ -45,20 +45,22 @@ export const postVideoUpload = async (req, res) => {
   const newVideo = await Video.create({
     fileUrl: path,
     title,
-    description
+    description,
+    creator: req.user.id
   });
+  req.user.videos.push(newVideo.id);
+  req.user.save();
   res.redirect(routes.videoDetail(newVideo.id));
 };
 
-// 비디오 정보
+/* --- 비디오 정보 --- */
 
 export const videoDetail = async (req, res) => {
   const {
     params: { id }
   } = req;
   try {
-    const video = await Video.findById(id); // Model.findById - mongoose의 query
-    console.log(video);
+    const video = await Video.findById(id).populate("creator"); // Model.findById - mongoose의 query, populate : 객체를 가지고 오는 함수
     res.render("videoDetail", { pageTitle: video.title, video }); // video.title : 페이지 타이틀을 동영상 제목으로, video: video 변수를 템플릿에 전달
   } catch (error) {
     console.log(error);
@@ -66,7 +68,7 @@ export const videoDetail = async (req, res) => {
   }
 };
 
-// 비디오 수정
+/* --- 비디오 수정 --- */
 
 export const getVideoEdit = async (req, res) => {
   const {
@@ -94,7 +96,7 @@ export const postVideoEdit = async (req, res) => {
   }
 };
 
-// 비디오 삭제
+/* --- 비디오 삭제 --- */
 
 export const videoDelete = async (req, res) => {
   const {

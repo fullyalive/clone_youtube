@@ -7,6 +7,10 @@ const VideoSchema = new mongoose.Schema({
     type: String,
     required: "File Url is required" // fileUrl 값이 없는 video를 생성하면 이 error 메시지를 받는다
   },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   title: {
     type: String,
     required: "Title is required"

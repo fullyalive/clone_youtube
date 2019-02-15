@@ -3,7 +3,11 @@ extends layouts/main
 block content
     .user-profile
         .user-profile__header
-            img.u-avatar(src=user.avatarUrl)
+            if user.avatarUrl
+                img.u-avatar(src=`/${user.avatarUrl}`)
+            else
+                .u-noPhoto
+                    i.fas.fa-user-astronaut
             h4.profile__username=user.name
         if user.id === loggedUser.id
             .user-profile__btns
