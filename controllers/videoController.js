@@ -4,6 +4,7 @@ import Video from "../models/Video";
 // render 함수의 첫번째 인자는 template, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
 export const home = async (req, res) => {
   // async : function의 특정 부분을 기다려야 할 때 사용
+
   try {
     const videos = await Video.find({})
       .populate("creator")
