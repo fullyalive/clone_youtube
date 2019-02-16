@@ -1,16 +1,18 @@
 extends layouts/main
+include mixins/videoPlayer
 
 block content
     .video-detail__container
-        .video__player
-            video(src=`/${video.fileUrl}`)
+        +videoPlayer({
+            src:video.fileUrl
+        })
         .video__info
             //- videoController에서 넘겨준 video의 id를 받아온다.
             .title-container
                 h5.video__title=video.title
                 span.video__views 조회수 #{video.views}회
             .video__function
-                if video.creator.id === loggedUser.id
+                if loggedUser && video.creator.id === loggedUser.id
                     a.editButton(href=routes.videoEdit(video.id)) 수정
         .video__subInfo
             a(href=routes.userDetail(video.creator.id))
