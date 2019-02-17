@@ -48,6 +48,7 @@ app.use(passport.session());
 app.use(localsMiddleware); // local 변수를 global하게 사용할 수 있도록
 
 app.use(routes.home, globalRouter); // 누가 / 경로로 접속하면 globalRouter 전체를 사용하겠다는 의미
+// app.user(routes.me, profileRouter); // 누가 /me 경로로 접속하면 profileRouter 전체를 사용하겠다는 의미
 app.use(routes.users, userRouter); // 누가 /user 경로로 접속하면 userRouter 전체를 사용하겠다는 의미
 app.use(routes.videos, videoRouter); // 누가 /videos 경로로 접속하면 videoRouter 전체를 사용하겠다는 의미
 
