@@ -590,6 +590,8 @@ input[type="submit"] {
     .videoPlayer .videoPlayer__controls i {
       font-size: 20px;
       cursor: pointer; }
+    .videoPlayer .videoPlayer__controls .bar {
+      margin-right: 10px; }
 
 .home-videos {
   display: -webkit-box;
