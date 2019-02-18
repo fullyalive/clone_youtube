@@ -3,6 +3,7 @@ const videoPlayer = document.querySelector("#jsVideoPlayer video");
 const playBtn = document.getElementById("jsPlayButton");
 const volumeBtn = document.getElementById("jsVolumeBtn");
 const fullScreenBtn = document.getElementById("jsFullScreen");
+const volumeRange = document.getElementById("jsVolume");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 
@@ -16,13 +17,34 @@ function handlePlayClick() {
   }
 }
 
+function handlePlayEnded() {
+  videoPlayer.currentTime = 0;
+  playBtn.innerHTML = '<i class="fas fa-play"></i>';
+}
+
 function handleVolumeClick() {
   if (videoPlayer.muted) {
     videoPlayer.muted = false;
     volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+    volumeRange.value = videoPlayer.volume;
   } else {
+    volumeRange.value = 0;
     videoPlayer.muted = true;
     volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+  }
+}
+
+function handleVolumeRange(event) {
+  const {
+    target: { value }
+  } = event;
+  videoPlayer.volume = value;
+  if (value >= 0.6) {
+    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+  } else if (value >= 0.2) {
+    volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+  } else {
+    volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>';
   }
 }
 
@@ -74,7 +96,7 @@ const formatDate = seconds => {
 };
 
 function getCurrentTime() {
-  currentTime.innerHTML = formatDate(videoPlayer.currentTime);
+  currentTime.innerHTML = formatDate(Math.floor(videoPlayer.currentTime));
 }
 
 function setTotalTime() {
@@ -84,10 +106,13 @@ function setTotalTime() {
 }
 
 function init() {
+  videoPlayer.volume = 0.5;
   playBtn.addEventListener("click", handlePlayClick);
   volumeBtn.addEventListener("click", handleVolumeClick);
   fullScreenBtn.addEventListener("click", goFullScreen);
   videoPlayer.addEventListener("loadedmetadata", setTotalTime);
+  videoPlayer.addEventListener("ended", handlePlayEnded);
+  volumeRange.addEventListener("input", handleVolumeRange);
 }
 
 if (videoContainer) {

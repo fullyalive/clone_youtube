@@ -29,6 +29,33 @@
         margin-right: 10px;
       }
     }
+    .videoPlayer__volume {
+      position: absolute;
+      padding: 0;
+      opacity: 1;
+      top: -60px;
+      left: -25px;
+      transform: rotate(-90deg);
+      z-index: 10;
+      width: 80px;
+
+      input {
+        background-color: rgba(0, 0, 0, 0.7);
+        &::-webkit-slider-runnable-track {
+          background-color: $grey;
+          height: 5px;
+        }
+        &::-webkit-slider-thumb {
+          all: unset;
+          background-color: $red;
+          height: 15px;
+          width: 15px;
+          border-radius: 50%;
+          position: relative;
+          top: -5px;
+        }
+      }
+    }
     .videoPlayer__column:last-child {
       justify-self: end;
     }
