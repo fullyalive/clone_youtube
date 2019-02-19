@@ -62,7 +62,10 @@ export const videoDetail = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const video = await Video.findById(id).populate("creator"); // Model.findById - mongoose의 query, populate : 객체를 가지고 오는 함수
+    const video = await Video.findById(id)
+      .populate("creator")
+      .populate("comments");
+    // Model.findById - mongoose의 query, populate : 객체를 가지고 오는 함수
     res.render("videoDetail", { pageTitle: video.title, video }); // video.title : 페이지 타이틀을 동영상 제목으로, video: video 변수를 템플릿에 전달
   } catch (error) {
     res.redirect(routes.home);

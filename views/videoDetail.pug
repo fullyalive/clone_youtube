@@ -28,3 +28,9 @@ block content
             //-     span.video__comment-number 1 comment
             //- else
             span.video__comment-number 댓글 #{video.comments.length}개
+            form.add__comment#jsAddComment
+                input(type="text", placeholder="댓글을 입력하세요")
+            ul.video__comments-list
+                each comment in video.comments
+                    li
+                        span=comment.text

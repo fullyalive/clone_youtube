@@ -2,6 +2,7 @@
 
 const API = "/api";
 const REGISTER_VIEW = "/:id/view";
+const ADD_COMMENT = "/:id/comment";
 
 // Global URLs
 
@@ -38,6 +39,7 @@ const routes = {
   // API
   api: API,
   registerView: REGISTER_VIEW,
+  addComment: ADD_COMMENT,
   // Global
   home: HOME,
   search: SEARCH,
