@@ -14,6 +14,7 @@ import routes from "./routes";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
+import apiRouter from "./routers/apiRouter";
 
 import "./passport";
 
@@ -51,5 +52,6 @@ app.use(routes.home, globalRouter); // 누가 / 경로로 접속하면 globalRou
 // app.user(routes.me, profileRouter); // 누가 /me 경로로 접속하면 profileRouter 전체를 사용하겠다는 의미
 app.use(routes.users, userRouter); // 누가 /user 경로로 접속하면 userRouter 전체를 사용하겠다는 의미
 app.use(routes.videos, videoRouter); // 누가 /videos 경로로 접속하면 videoRouter 전체를 사용하겠다는 의미
+app.use(routes.api, apiRouter); // 누가 /api 경로로 접속하면 apiRouter 전체를 사용하겠다는 의미
 
 export default app;

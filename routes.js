@@ -1,3 +1,8 @@
+// API
+
+const API = "/api";
+const REGISTER_VIEW = "/:id/view";
+
 // Global URLs
 
 const HOME = "/";
@@ -30,6 +35,9 @@ const VIDEO_EDIT = "/:id/edit";
 const VIDEO_DELETE = "/:id/delete";
 
 const routes = {
+  // API
+  api: API,
+  registerView: REGISTER_VIEW,
   // Global
   home: HOME,
   search: SEARCH,
