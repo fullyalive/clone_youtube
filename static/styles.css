@@ -635,6 +635,22 @@ input[type="submit"] {
             border-top-right-radius: 3px;
     background-color: #efefef; }
 
+.video__comments {
+  width: 100%;
+  margin-top: 25px; }
+  .video__comments .video__comment-number {
+    font-size: 18px; }
+    .video__comments .video__comment-number span:first-child {
+      margin-right: 3px; }
+  .video__comments .video__comments-list {
+    margin-top: 50px; }
+    .video__comments .video__comments-list li {
+      background-color: #efefef;
+      color: #444444;
+      padding: 10px; }
+      .video__comments .video__comments-list li:not(:last-child) {
+        margin-bottom: 10px; }
+
 .home-videos {
   display: -webkit-box;
   display: -webkit-flex;
@@ -777,12 +793,6 @@ input[type="submit"] {
       font-weight: 600; }
   .video-detail__container .video__description {
     margin-bottom: 15px; }
-
-.video__comments {
-  width: 100%;
-  margin-top: 25px; }
-  .video__comments .video__comment-number {
-    font-size: 18px; }
 
 .my-profile__btns {
   display: -webkit-box;

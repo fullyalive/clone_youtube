@@ -27,10 +27,13 @@ block content
             //- if video.comments.length === 1
             //-     span.video__comment-number 1 comment
             //- else
-            span.video__comment-number 댓글 #{video.comments.length}개
+            .video__comment-number
+                span 댓글
+                span#jsCommentNumber=video.comments.length
+                span 개
             form.add__comment#jsAddComment
                 input(type="text", placeholder="댓글을 입력하세요")
-            ul.video__comments-list
-                each comment in video.comments
+            ul.video__comments-list#jsCommentList
+                each comment in video.comments.reverse()
                     li
                         span=comment.text

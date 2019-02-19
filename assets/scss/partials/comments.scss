@@ -1,13 +1,25 @@
-.video__comments-list {
-  margin-top: 50px;
-  li {
-    background-color: #3498db;
-    color: white;
-    padding: 15px;
-    border-radius: 20px;
-    border-bottom-left-radius: 0px;
-    &:not(:last-child) {
-      margin-bottom: 15px;
+// 비디오 코멘트 박스
+
+.video__comments {
+  width: 100%;
+  margin-top: 25px;
+  .video__comment-number {
+    font-size: 18px;
+    span {
+      &:first-child {
+        margin-right: 3px;
+      }
+    }
+  }
+  .video__comments-list {
+    margin-top: 50px;
+    li {
+      background-color: #efefef;
+      color: $black;
+      padding: 10px;
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
     }
   }
 }
