@@ -620,6 +620,21 @@ input[type="submit"] {
     .videoPlayer .videoPlayer__controls .bar {
       margin-right: 10px; }
 
+.record-container {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 30px; }
+  .record-container video {
+    width: 100%;
+    margin-bottom: 15px;
+    -webkit-border-top-left-radius: 3px;
+       -moz-border-radius-topleft: 3px;
+            border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+       -moz-border-radius-topright: 3px;
+            border-top-right-radius: 3px;
+    background-color: #efefef; }
+
 .home-videos {
   display: -webkit-box;
   display: -webkit-flex;
