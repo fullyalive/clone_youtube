@@ -1,5 +1,6 @@
 import routes from "../routes";
 import Video from "../models/Video";
+import User from "../models/User";
 
 // render 함수의 첫번째 인자는 template, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
 export const home = async (req, res) => {
@@ -65,8 +66,9 @@ export const videoDetail = async (req, res) => {
     const video = await Video.findById(id)
       .populate("creator")
       .populate("comments");
+    const user = await User.findById(req.user.id);
     // Model.findById - mongoose의 query, populate : 객체를 가지고 오는 함수
-    res.render("videoDetail", { pageTitle: video.title, video }); // video.title : 페이지 타이틀을 동영상 제목으로, video: video 변수를 템플릿에 전달
+    res.render("videoDetail", { pageTitle: video.title, video, user }); // video.title : 페이지 타이틀을 동영상 제목으로, video: video 변수를 템플릿에 전달
   } catch (error) {
     res.redirect(routes.home);
   }

@@ -2,21 +2,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
-  .video__player {
-    width: 100%;
-    margin-bottom: 25px;
-  }
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  width: 100%;
   .video__info {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding-bottom: 25px;
+    padding: 1%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
     margin-bottom: 25px;
     .title-container {
       .video__title {
@@ -49,6 +44,7 @@
   }
   .video__subInfo {
     width: 100%;
+    padding: 1%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
     a {
@@ -78,4 +74,3 @@
     margin-bottom: 15px;
   }
 }
-

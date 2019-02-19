@@ -1,4 +1,3 @@
-// import routes from "../routes";
 import Video from "../models/Video";
 import Comment from "../models/Comment";
 
@@ -11,7 +10,7 @@ const postAddComment = async (req, res) => {
     user
   } = req;
   try {
-    const video = await Video.findById(id)
+    const video = await Video.findById(id);
     const newComment = await Comment.create({
       text: comment,
       creator: user.id

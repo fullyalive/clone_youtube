@@ -32,8 +32,22 @@ block content
                 span#jsCommentNumber=video.comments.length
                 span 개
             form.add__comment#jsAddComment
+                a(href=routes.userDetail(user.id))
+                    if user.avatarUrl
+                        img.video__creator-avatar(src=`/${user.avatarUrl}`)
+                    else
+                        .noPhoto
+                            i.fas.fa-user-astronaut
                 input(type="text", placeholder="댓글을 입력하세요")
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
+                        //- a(href=routes.userDetail(comment.creator))
+                        //-     if comment.creator.avatarUrl
+                        //-         img.comment__creator-avatar(src=`/${comment.creator.avatarUrl}`)
+                        //-     else
+                        //-         .noPhoto
+                        //-             i.fas.fa-user-astronaut
+                        div=comment.creator
+                        div=comment.createdAt.toDateString()
                         span=comment.text

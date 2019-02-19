@@ -2,12 +2,45 @@
 
 .video__comments {
   width: 100%;
+  padding: 2%;
   margin-top: 25px;
   .video__comment-number {
     font-size: 18px;
     span {
       &:first-child {
         margin-right: 3px;
+      }
+    }
+  }
+  .add__comment {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    a {
+      display: flex;
+      align-items: center;
+      .video__creator-avatar,
+      .noPhoto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 56px;
+        height: 56px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+      i {
+        font-size: 32px;
+      }
+    }
+    input {
+      width: 100%;
+      max-width: none;
+      border-bottom: 1px solid transparent;
+      border-radius: 0;
+      &:focus {
+        border-bottom: 1px solid $dark-grey;
       }
     }
   }
@@ -19,6 +52,23 @@
       padding: 10px;
       &:not(:last-child) {
         margin-bottom: 10px;
+      }
+      a {
+        display: flex;
+        align-items: center;
+        .comment__creator-avatar,
+        .noPhoto {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 56px;
+          height: 56px;
+          margin-right: 10px;
+          border-radius: 50%;
+        }
+        i {
+          font-size: 32px;
+        }
       }
     }
   }
