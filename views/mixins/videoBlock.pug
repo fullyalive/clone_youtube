@@ -5,7 +5,7 @@ mixin videoBlock(video = {})
     //- 이 경우 mixin에 인자가 입력되면, 그 객체의 이름을 video라고 하는 것
     .videoBlock
         a(href=routes.videoDetail(video.id))
-            video.videoBlock__thumbnail(src=video.videoFile, controls=true)
+            video.videoBlock__thumbnail(src=video.videoFile, controls=false)
             //- 비디오 태그(html은 <video />)
             span.videoBlock__title=video.title
         .videoInfoBox

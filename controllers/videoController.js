@@ -43,10 +43,10 @@ export const postVideoUpload = async (req, res) => {
   // postVideoUpload function이 유저가 업로드한 file에 접근, middlewares의 multer에 의해서 파일이 아닌 url 방식으로 접근한다.
   const {
     body: { title, description },
-    file: { path } // file을 form에서 받아오는 것이 아니라 multer가 생성해준 path에서 받아온다
+    file: { location } // file을 form에서 받아오는 것이 아니라 multer가 생성해준 path에서 받아온다
   } = req;
   const newVideo = await Video.create({
-    fileUrl: path,
+    fileUrl: location,
     title,
     description,
     creator: req.user.id
@@ -74,7 +74,6 @@ export const videoDetail = async (req, res) => {
       .populate("creator");
     const user = await User.findById(req.user.id);
     // Model.findById - mongoose의 query, populate : 객체를 가지고 오는 함수
-    console.log(video);
     res.render("videoDetail", { pageTitle: video.title, video, user }); // video.title : 페이지 타이틀을 동영상 제목으로, video: video 변수를 템플릿에 전달
   } catch (error) {
     res.redirect(routes.home);

@@ -1,8 +1,36 @@
+import dotenv from "dotenv";
+import aws from "aws-sdk";
 import multer from "multer";
+import multerS3 from "multer-s3";
 import routes from "./routes";
 
-const multerVideo = multer({ dest: "uploads/videos/" }); // 유저가 동영상을 업로드하면 서버에 있는 folder(video/)에 업로드
-const multerAvatar = multer({ dest: "uploads/avatars/" });
+dotenv.config();
+
+const s3 = new aws.S3({
+  accessKeyId: process.env.AWS_KEY,
+  secretAccessKey: process.env.AWS_PRIVATE_KEY,
+  region: "ap-northeast-2"
+});
+
+const multerVideo = multer({
+  storage: multerS3({
+    // default storage는 node.js의 파일 시스템, 이 경우는 multerS3
+    s3,
+    acl: "public-read",
+    bucket: "clone-youtube/videos" // access control list
+  })
+});
+
+const multerAvatar = multer({
+  storage: multerS3({
+    s3,
+    acl: "public-read",
+    bucket: "clone-youtube/avatars"
+  })
+});
+
+// const multerVideo = multer({ dest: "uploads/videos/" }); // 유저가 동영상을 업로드하면 서버에 있는 folder(video/)에 업로드
+// const multerAvatar = multer({ dest: "uploads/avatars/" });
 
 export const uploadVideo = multerVideo.single("videoFile"); // single : 오직 하나의 파일만 upload, Name part는 videoUpload.pug의 file의 name="videoFile"에서 온 것
 export const uploadAvatar = multerAvatar.single("avatar"); // Name part는 editProfile.pug의 file의 name="avatar"에서 온 것
