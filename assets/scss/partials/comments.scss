@@ -17,23 +17,20 @@
     align-items: center;
     width: 100%;
     margin-top: 10px;
-    a {
+    .video__creator-avatar,
+    .noPhoto {
       display: flex;
+      justify-content: center;
       align-items: center;
-      .video__creator-avatar,
-      .noPhoto {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 56px;
-        height: 56px;
-        margin-right: 10px;
-        border-radius: 50%;
-      }
-      i {
-        font-size: 32px;
-      }
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      border-radius: 50%;
     }
+    i {
+      font-size: 32px;
+    }
+
     input {
       width: 100%;
       max-width: none;
@@ -47,7 +44,8 @@
   .video__comments-list {
     margin-top: 50px;
     li {
-      background-color: #efefef;
+      display: flex;
+      align-items: center;
       color: $black;
       padding: 10px;
       &:not(:last-child) {
@@ -61,13 +59,36 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 56px;
-          height: 56px;
+          width: 40px;
+          height: 40px;
           margin-right: 10px;
           border-radius: 50%;
         }
         i {
           font-size: 32px;
+        }
+      }
+      .comment__box {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 5px;
+        .comment__header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+          .creator-name {
+            margin-right: 5px;
+            font-size: 14px;
+            font-weight: 600;
+          }
+          .created-at {
+            color: $dark-grey;
+            font-size: 12px;
+          }
+        }
+        .content {
+          font-size: 12px;
         }
       }
     }

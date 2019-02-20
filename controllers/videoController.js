@@ -64,10 +64,17 @@ export const videoDetail = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id)
-      .populate("creator")
-      .populate("comments");
+      .populate({
+        path: "comments",
+        populate: {
+          path: "creator",
+          model: User
+        }
+      })
+      .populate("creator");
     const user = await User.findById(req.user.id);
     // Model.findById - mongoose의 query, populate : 객체를 가지고 오는 함수
+    console.log(video);
     res.render("videoDetail", { pageTitle: video.title, video, user }); // video.title : 페이지 타이틀을 동영상 제목으로, video: video 변수를 템플릿에 전달
   } catch (error) {
     res.redirect(routes.home);

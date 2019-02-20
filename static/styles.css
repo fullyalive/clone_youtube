@@ -656,42 +656,31 @@ input[type="submit"] {
             align-items: center;
     width: 100%;
     margin-top: 10px; }
-    .video__comments .add__comment a {
+    .video__comments .add__comment .video__creator-avatar,
+    .video__comments .add__comment .noPhoto {
       display: -webkit-box;
       display: -webkit-flex;
       display: -moz-box;
       display: -ms-flexbox;
       display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+         -moz-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
       -webkit-box-align: center;
       -webkit-align-items: center;
          -moz-box-align: center;
           -ms-flex-align: center;
-              align-items: center; }
-      .video__comments .add__comment a .video__creator-avatar,
-      .video__comments .add__comment a .noPhoto {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-           -moz-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-           -moz-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        width: 56px;
-        height: 56px;
-        margin-right: 10px;
-        -webkit-border-radius: 50%;
-           -moz-border-radius: 50%;
-                border-radius: 50%; }
-      .video__comments .add__comment a i {
-        font-size: 32px; }
+              align-items: center;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      -webkit-border-radius: 50%;
+         -moz-border-radius: 50%;
+              border-radius: 50%; }
+    .video__comments .add__comment i {
+      font-size: 32px; }
     .video__comments .add__comment input {
       width: 100%;
       max-width: none;
@@ -704,7 +693,16 @@ input[type="submit"] {
   .video__comments .video__comments-list {
     margin-top: 50px; }
     .video__comments .video__comments-list li {
-      background-color: #efefef;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+         -moz-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       color: #444444;
       padding: 10px; }
       .video__comments .video__comments-list li:not(:last-child) {
@@ -737,14 +735,54 @@ input[type="submit"] {
              -moz-box-align: center;
               -ms-flex-align: center;
                   align-items: center;
-          width: 56px;
-          height: 56px;
+          width: 40px;
+          height: 40px;
           margin-right: 10px;
           -webkit-border-radius: 50%;
              -moz-border-radius: 50%;
                   border-radius: 50%; }
         .video__comments .video__comments-list li a i {
           font-size: 32px; }
+      .video__comments .video__comments-list li .comment__box {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+           -moz-box-orient: vertical;
+           -moz-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+           -moz-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        margin-top: 5px; }
+        .video__comments .video__comments-list li .comment__box .comment__header {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+             -moz-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          margin-bottom: 5px; }
+          .video__comments .video__comments-list li .comment__box .comment__header .creator-name {
+            margin-right: 5px;
+            font-size: 14px;
+            font-weight: 600; }
+          .video__comments .video__comments-list li .comment__box .comment__header .created-at {
+            color: #a0a0a0;
+            font-size: 12px; }
+        .video__comments .video__comments-list li .comment__box .content {
+          font-size: 12px; }
 
 .home-videos {
   display: -webkit-box;

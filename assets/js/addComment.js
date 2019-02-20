@@ -9,7 +9,7 @@ const increaseNumber = () => {
 };
 const addComment = comment => {
   const li = document.createElement("li");
-  const span = document.createElement("span");
+  const span = document.createElement("span.content");
   span.innerHTML = comment;
   li.appendChild(span);
   commentList.prepend(li);
