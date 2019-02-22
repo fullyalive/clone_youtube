@@ -1,4 +1,4 @@
-import axios from "axios";
+import getBlobDuration from "get-blob-duration";
 
 const videoContainer = document.getElementById("jsVideoPlayer");
 const videoPlayer = document.querySelector("#jsVideoPlayer video");
@@ -99,7 +99,7 @@ const formatDate = seconds => {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  if (seconds < 10) {
+  if (totalSeconds < 10) {
     totalSeconds = `0${totalSeconds}`;
   }
   return `${hours}:${minutes}:${totalSeconds}`;
@@ -109,8 +109,10 @@ function getCurrentTime() {
   currentTime.innerHTML = formatDate(Math.floor(videoPlayer.currentTime));
 }
 
-function setTotalTime() {
-  const totalTimeString = formatDate(videoPlayer.duration);
+async function setTotalTime() {
+  const blob = await fetch(videoPlayer.src).then(response => response.blob()); // videoPlayer의 src를 받아서(서버에 요청해 반환받는다) respnose의 파일(blob)을 반환F
+  const duration = await getBlobDuration(blob);
+  const totalTimeString = formatDate(duration);
   totalTime.innerHTML = totalTimeString;
   setInterval(getCurrentTime, 1000);
 }
