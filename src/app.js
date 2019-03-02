@@ -8,6 +8,7 @@ import bodyParser from "body-parser"; // form/json을 받았을 때 그 데이�
 import passport from "passport";
 import mongoose from "mongoose"; // CookieStoore와 MongoDB를 연결해주는 역할을 위해
 import session from "express-session";
+import path from "path";
 import MongoStore from "connect-mongo";
 import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
@@ -27,8 +28,8 @@ const CookieStore = MongoStore(session); // Session object를 필요로 함
 
 app.use(helmet());
 app.set("view engine", "pug"); // view engine의 설정값을 pug로 바꾼다. - 이제 렌더함수를 사용하면 pug확장자의 파일을 불러온다
-app.use("/uploads", express.static("uploads")); // directory에서 file을 보내주는 middleware, 이 경우 directory는 uploads
-app.use("/static", express.static("static"));
+app.set("views", path.join(__dirname, "views"));
+app.use("/static", express.static(path.join(__dirname, "static")));
 app.use(cookieParser());
 app.use(bodyParser.json()); // json을 서버가 이해할 수 있도록
 app.use(bodyParser.urlencoded({ extended: true })); // urlencoded: 일반적인 html form을 전송하면 서버가 urlencoded를 이해해야한다.
