@@ -9,6 +9,7 @@ import passport from "passport";
 import mongoose from "mongoose"; // CookieStoore와 MongoDB를 연결해주는 역할을 위해
 import session from "express-session";
 import path from "path";
+import flash from "express-flash";
 import MongoStore from "connect-mongo";
 import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
@@ -43,6 +44,8 @@ app.use(
     store: new CookieStore({ mongooseConnection: mongoose.connection }) // 쿠키저장소에 쿠키를 저장, 이 저장소를 mongo와 연결한다.
   })
 );
+
+app.use(flash());
 app.use(passport.initialize()); // cookieParser로부터 쿠키가 내려오면 passport가 쿠키를 보고 그 정보에 해당하는 사용자를 찾아준다.
 // passport는 찾은 사용자의 요청을 object, 즉 req.user로 만들어준다. 그러면 그 user object를 템플릿에 추가시켜줄 수 있다.
 app.use(passport.session());
