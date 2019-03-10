@@ -123,6 +123,7 @@ export const postFacebookLogin = (req, res) => {
 
 export const logout = (req, res) => {
   req.logout(); // passport에서 제공
+  req.flash("goodbye", "로그아웃");
   res.redirect(routes.home);
 };
 

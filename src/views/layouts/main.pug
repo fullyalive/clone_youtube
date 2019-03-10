@@ -11,17 +11,21 @@ html
         if messages.error
             +message({
                 type:'error',
-                text:messages.error
+                text:messages.error,
+                subtext: '다시 한 번 확인해주세요 :)'
             })
-        else if messages.info
+        else if messages.goodbye
             +message({
-                type:'info',
-                text:messages.info
+                type:'goodbye',
+                text:messages.goodbye,
+                subtext: '안녕히가세요 :)'
+                
             })
         else if messages.success
             +message({
                 type:'success',
-                text:messages.success
+                text:messages.success,
+                subtext: '오늘도 즐거운 하루 되세요 :)'
             })
         include ../partials/header
         main

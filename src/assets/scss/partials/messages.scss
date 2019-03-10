@@ -1,38 +1,62 @@
 @keyframes flashAnimation {
   0% {
-    transform: translateY(-70px);
+    opacity: 1;
   }
-  5% {
-    transform: translateY(0px);
+  50% {
+    opacity: 0.8;
   }
   95% {
-    transform: translateY(0px);
+    opacity: 0.1;
   }
   100% {
-    transform: translateY(-70px);
+    opacity: 0;
+    display: none;
   }
 }
 
 .flash-message__container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  bottom: 120px;
+  right: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 20%;
+  min-width: 300px;
+  max-width: 500px;
   z-index: 9;
   padding: 20px;
-  text-align: center;
-  animation: flashAnimation 5s ease-in-out forwards; /* 애니메이션의 마지막 상태를 유지하겠다는 의미*/
+  border-radius: 3px;
+  animation: flashAnimation 2.5s ease-in-out forwards; /* 애니메이션의 마지막 상태를 유지하겠다는 의미*/
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
   &.error {
-    background-color: #e74c3c;
+    border-bottom: 1px solid #e74c3c;
   }
   &.success {
-    background-color: #2ecc71;
+    border-bottom: 1px solid #2ecc71;
   }
-  &.info {
-    background-color: #f1c40f;
+  &.goodbye {
+    border-bottom: 1px solid #f1c40f;
   }
-  .flash-message__text {
-    color: white;
-    font-size: 14px;
+  .flash-message__img {
+    background-color: #ffffff;
+    box-shadow: 28px 0px 58px -23px rgba(68,68,68,0.79);
+  }
+  .flash-message__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .flash-message__text {
+      margin-right: 10px;
+      color: $dark-grey;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .flash-message__subtext {
+      margin-top: 5px;
+      font-size: 12px;
+    }
   }
 }
