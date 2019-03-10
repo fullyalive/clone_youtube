@@ -19,13 +19,12 @@
   bottom: 120px;
   right: 30px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 20%;
-  min-width: 300px;
+  min-width: 280px;
   max-width: 500px;
   z-index: 9;
-  padding: 20px;
   border-radius: 3px;
   animation: flashAnimation 2.5s ease-in-out forwards; /* 애니메이션의 마지막 상태를 유지하겠다는 의미*/
   background-color: #ffffff;
@@ -41,21 +40,28 @@
     border-bottom: 1px solid #f1c40f;
   }
   .flash-message__img {
+    padding: 20px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
     background-color: #ffffff;
-    box-shadow: 28px 0px 58px -23px rgba(68,68,68,0.79);
+    box-shadow: 28px 0px 58px -23px rgba(68, 68, 68, 0.79);
   }
   .flash-message__box {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
+    width: 100%;
+    padding-left: 20px;
     .flash-message__text {
-      margin-right: 10px;
+      width: 100%;
       color: $dark-grey;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
     }
     .flash-message__subtext {
-      margin-top: 5px;
+      width: 100%;
+      margin-top: 10px;
       font-size: 12px;
     }
   }

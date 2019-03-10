@@ -3,5 +3,5 @@ mixin message(message={})
         .flash-message__img
             img(src=`../../static/images/${message.type}.png`)
         .flash-message__box
-            span.flash-message__text=message.text 
-            span.flash-message__subtext=message.subtext
+            .flash-message__text=message.text 
+            .flash-message__subtext=message.subtext
