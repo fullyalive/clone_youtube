@@ -1,0 +1,41 @@
+.search__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .search__header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .search__term {
+      font-size: 14px;
+      color: $red;
+    }
+    .search__result {
+      font-size: 14px;
+    }
+  }
+}
+
+.search__videos {
+    display: flex;
+    width: 100%;
+    .no-result {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        .no-result__image {
+
+        }
+        .no-result__text {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .no-result__subtext {
+            margin-top: 15px;
+            font-size: 14px;
+
+        }
+    }
+}
