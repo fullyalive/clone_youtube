@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
   .search__header-title {
     display: flex;
     justify-content: center;
@@ -17,25 +18,38 @@
 }
 
 .search__videos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .videoBlock {
     display: flex;
     width: 100%;
-    .no-result {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        .no-result__image {
-
-        }
-        .no-result__text {
-            font-size: 18px;
-            font-weight: 500;
-        }
-        .no-result__subtext {
-            margin-top: 15px;
-            font-size: 14px;
-
-        }
+    .videoBlock__thumbnail-box {
+      width: 30%;
+      margin-right: 5%;
     }
+    .videoInfoBox {
+      padding-top: 15px;
+      .videoBlock__title {
+        height: initial;
+      }
+    }
+  }
+  .no-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    .no-result__image {
+    }
+    .no-result__text {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .no-result__subtext {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  }
 }

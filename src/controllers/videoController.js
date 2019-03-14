@@ -23,15 +23,19 @@ export const search = async (req, res) => {
   const {
     query: { term: searchingBy } // term : searchingBy 이건 term에다 searchingBy라는 이름을 주는 것이다. 이제 searchingBy는 req.query.term과 같음
   } = req; // const searchingBy = req.query.term; 예전 방식의 코딩
-  let videos = [];
+  let foundVideos = [];
   try {
-    videos = await Video.find({
+    foundVideos = await Video.find({
       title: { $regex: searchingBy, $options: "i" } // options: "i" -> 대소문자 구분을 하지 않는다.
     }).populate("creator");
   } catch (error) {
     res.redirect(routes.home);
   }
-  res.render("search", { pageTitle: "검색결과", searchingBy, videos });
+  res.render("search", {
+    pageTitle: "검색결과",
+    searchingBy,
+    foundVideos
+  });
 };
 
 /* --- 비디오 업로드 --- */

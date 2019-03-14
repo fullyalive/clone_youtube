@@ -12,13 +12,7 @@
     margin-bottom: 10px;
     max-width: 100%;
   }
-  .videoBlock__title {
-    display: inline-block;
-    height: 32px;
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
+
   .videoInfoBox {
     display: flex;
     flex-direction: column;
@@ -26,6 +20,15 @@
     width: 100%;
     color: $dark-grey;
     font-size: 14px;
+    .videoBlock__title {
+      display: inline-block;
+      width: 100%;
+      height: 32px;
+      color: $black;
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
     .videoSubInfo {
       width: 100%;
     }

@@ -7,15 +7,14 @@ block content
             span.search__term #{searchingBy}
             span.search__result (으)로 검색한 결과입니다.
     .search__videos
-        if videos.length === 0
+        if foundVideos.length === 0
             .no-result
                 .no-result__image
                     img(src="../../static/images/404.png")
                 span.no-result__text 검색결과가 없습니다.
                 span.no-result__subtext 돌아가서 다른 검색어로 입력하시겠어요?
 
-            
-        each item in videos
+        each item in foundVideos
             +videoBlock({
                 id: item.id,
                 title: item.title,
