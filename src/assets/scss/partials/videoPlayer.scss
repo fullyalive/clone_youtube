@@ -10,6 +10,8 @@
     max-width: 100%;
   }
   .videoPlayer__controls {
+    display: flex;
+    justify-content: space-between;
     opacity: 0;
     transition: opacity 0.4s linear;
     color: white;
@@ -19,8 +21,6 @@
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     font-size: 16px;
     .videoPlayer__column:first-child {
       display: flex;
@@ -63,6 +63,7 @@
       justify-self: center;
     }
     i {
+      margin-right: 10px;
       font-size: 20px;
       cursor: pointer;
     }

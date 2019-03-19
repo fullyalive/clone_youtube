@@ -1,11 +1,20 @@
-# Clone_youtube
+# **Clone_youtube**
 
 Cloning Youtube with Vanilla and Node JS
 
-***
+>**메인페이지 & 비디오 보기**
+![](gif/main.gif)
+
+>**프로필**
+![](gif/profile.gif)
+
+>**검색**
+![](gif/search.gif)
+
+>**화면녹화**
+![](gif/recording.gif)
 
 ## Structure
-
 
 ### Global
 - 홈 (Home)
@@ -24,5 +33,6 @@ Cloning Youtube with Vanilla and Node JS
 - 동영상 수정 (Edit Video)
 - 동영상 삭제 (Delete Video)
 
-## MongoDB
-
+## DB
+- MongoAtlas
+- AWS s3

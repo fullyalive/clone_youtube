@@ -1,0 +1,13 @@
+//- 코드를 복붙하지 않고 재활용하는 방법을 mixin이라 한다.
+//- mixin에는 인자가 하나 필요하다.
+
+mixin userBlock(user = {})
+    //- 이 경우 mixin에 인자가 입력되면, 그 객체의 이름을 video라고 하는 것
+    .userBlock
+        a(href=routes.userDetail(user.id))
+            img(src=user.avatarUrl)
+        .userInfoBox
+            span.userBlock__namer=user.name
+            .userSubInfo
+                span.userBlock__subscriptions 구독자수 user.views회
+                span.userBlock__date ∙ 최근 업로드 user.lastCreatedAt
