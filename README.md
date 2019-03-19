@@ -2,17 +2,17 @@
 
 Cloning Youtube with Vanilla and Node JS
 
->**메인페이지 & 비디오 보기**
-![](gif/main.gif)
+**메인페이지 & 비디오 보기**
+>![](gif/main.gif)
 
->**프로필**
-![](gif/profile.gif)
+**프로필**
+>![](gif/profile.gif)
 
->**검색**
-![](gif/search.gif)
+**검색**
+>![](gif/search.gif)
 
->**화면녹화**
-![](gif/recording.gif)
+**화면녹화**
+>![](gif/recording.gif)
 
 ## Structure
 
